@@ -1,0 +1,42 @@
+bundle:
+  name: "Primary ETL"
+
+# OPTIONAL: Define any custom variables for use throughout the bundle.
+variables:
+  env:
+    description: The value is overridden in the pipeline.
+    default: dev
+
+# NOTE: This can be overriden per environment. See below.
+workspace:
+  host: https://adb-3355075060794740.0.azuredatabricks.net # demo-msf - 2025-03-25
+
+resources:
+  jobs:
+    etl-job:
+      name: "[${bundle.environment}] Primary ETL"
+      tasks:
+        - task_key: primary_etl_task
+          notebook_task:
+            base_parameters:
+              env: ${var.env}
+            notebook_path: ./orchestrator.py
+          # new_cluster:
+          #   spark_version: 14.2.x-scala2.12
+          #   num_workers: 1
+          #   node_type_id: Standard_DS3_v2
+
+environments:
+  dev:
+    default: true
+    variables:
+      env: dev
+  prd:
+    workspace:
+      host: https://adb-3355075060794740.0.azuredatabricks.net # demo-msf - 2025-03-25
+    variables:
+      env: prd # custom variable reference.
+    # new_cluster:
+    #   spark_version: 14.2.x-scala2.12
+    #   num_workers: 1
+    #   node_type_id: Standard_DS3_v2
