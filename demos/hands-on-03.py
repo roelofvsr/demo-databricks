@@ -1,18 +1,18 @@
 
-# COMMAND
+# COMMAND ----------
 # This is the first cell
 print("Hello, Databricks Notebook!")
 
-# COMMAND
+# COMMAND ----------
 # Create token
 # Go to right top- settings
 # Go to developer 
 # Create API key - copy
 
-# COMMAND
+# COMMAND ----------
 # Install databricks-cli
 # https://learn.microsoft.com/en-us/azure/databricks/dev-tools/cli/install#winget-install
 
-# COMMAND
+# COMMAND ----------
 # authenticate to databricks api
 # databricks configure --token --profile <prof-name>
